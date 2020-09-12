@@ -40,12 +40,11 @@ def quick_sort(arr, low, high):
     
 if __name__ == "__main__":
     """
-    Testing
+    Testing  
     """
     LENGTH = 100
     RANGE = 100
     for _ in range(10):
         arr = helpers.generate_random_list(LENGTH, RANGE)
         quick_sort(arr, 0, len(arr) - 1)
-        print(arr)
         assert helpers.is_sorted(arr)
