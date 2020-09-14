@@ -31,6 +31,23 @@ class Vertex:
     def _add_edge(self, edge):
         self.edges.append(edge)
 
+    def __lt__(self, vertex):
+        return self.label > vertex.label
+
+
+    @property
+    def neighbours(self):
+        """
+        Get all neighbouring vertices
+        """
+        neighbours = []
+        for e in self.edges:
+            neighbour = e.vertices[0]
+            if neighbour is self:
+                neighbour = e.vertices[1]
+            neighbours.append((neighbour, e.weight))
+        return neighbours
+
     def get_edge(self, other_vertex):
         """
         Helper returns edge to other vertex if there is one
@@ -39,6 +56,8 @@ class Vertex:
             if other_vertex in e.vertices and other_vertex is not self:
                 return e
 
+    def __str__(self):
+        return f"{self.label}"
 
 class Graph:
     """
