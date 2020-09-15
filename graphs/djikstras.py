@@ -1,17 +1,16 @@
 # Implemetation of Djikstra's algorithm for practice
 import heapq
 from graph import Graph, Vertex
-# BUG not working on the test below, missing 1 vertex in shortest paths and values are wrong
 
 
-def update_pq(pq, vertex, new_weight):
+def update_pq(pq, vertex, new_weight, current):
     """
     Update pq if new weight is less than current
     """
     for i in range(len(pq)):
-        weight, v = pq[i]
+        weight, v, prev = pq[i]
         if v is vertex and weight > new_weight:
-            pq[i] = (new_weight, v)
+            pq[i] = (new_weight, v, current)
 
 def find_shortest_path(graph, source):
     """
@@ -22,23 +21,18 @@ def find_shortest_path(graph, source):
     pq = []
     for v in graph.vertices:
         if v is not source:
-            pq.append((MAX_WEIGHT + 1, v))
+            pq.append((MAX_WEIGHT + 1, v, None))
+        else:
+            pq.append((0, v, None))
 
-    current = source
-    current_path_weight = 0
-    prev_vertex = None
     while pq:
-        #print(pq)
+        current_path_weight, current, prev_vertex = heapq.heappop(pq)
         visited.append(current)
         for (v, weight) in current.neighbours:
             if v not in visited:
-                update_pq(pq, v, weight + current_path_weight)
-        #print(pq)
+                update_pq(pq, v, weight + current_path_weight, current)
         heapq.heapify(pq)
         shortest_paths.append((current, current_path_weight, prev_vertex))
-        prev_vertex = current
-        current_path_weight, current = heapq.heappop(pq)
-
     return shortest_paths
 
 if __name__ == "__main__":
@@ -56,6 +50,7 @@ if __name__ == "__main__":
     test_graph.add_edge(1, 4, 2)
     test_graph.add_edge(2, 4, 5)
     test_graph.add_edge(3, 4, 1)
+    print(test_graph)
     
     shortest_paths = find_shortest_path(
         test_graph,
@@ -63,5 +58,5 @@ if __name__ == "__main__":
     )
     for item in shortest_paths:
         print(
-            f"vertex: {item[0]} shortest_path: {item[0]} prev_vertex: {item[2]}"
+            f"vertex: {item[0]} shortest_path: {item[1]} prev_vertex: {item[2]}"
         )
