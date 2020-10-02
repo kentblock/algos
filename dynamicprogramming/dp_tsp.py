@@ -26,7 +26,6 @@ def precompute_distances(index):
             if in_bounds(new_position) and not visited[new_position[0]][new_position[1]]: 
                 if new_position not in blocked_positions:
                     heapq.heappush(pq, (dist_to_pos + 1, new_position))
-    
 
 def find_min_path(mask, index):
     """
