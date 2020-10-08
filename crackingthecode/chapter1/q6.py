@@ -28,5 +28,5 @@ if __name__ == "__main__":
     """
     Testing
     """
-    assert str_compression("aabccccaaa") == "a2b1c5a3"
+    assert str_compression("aabccccaaa") == "a2b1c4a3"
     assert str_compression("abcd") == "abcd"
