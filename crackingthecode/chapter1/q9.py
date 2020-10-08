@@ -1,4 +1,5 @@
 # Cracking the code question 1.9 String Rotation
+# More elegant way to do this is to check if s2 is a substring of s1s1
 
 def is_substring(s1, s2):
     """

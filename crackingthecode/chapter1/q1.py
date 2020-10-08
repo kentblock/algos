@@ -4,7 +4,7 @@
 def is_unique(input_string):
     """
     Return True if all characters in string are unique,
-    otherwise False, using no additional data structures
+    otherwise False, using bit vector
     """
     
     if len(input_string) > 26:

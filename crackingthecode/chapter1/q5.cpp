@@ -1,4 +1,6 @@
 // Cracking the code 1.5 One Away
+
+// This could use a refactor
 #include <iostream>
 #include <string>
 #include <cstdlib>

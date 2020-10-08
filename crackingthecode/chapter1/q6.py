@@ -1,5 +1,5 @@
 # Cracking the code question 1.6 String Compression
-
+# Could check if the string will be longer in advance, as well
 
 def str_compression(input_str):
     """
